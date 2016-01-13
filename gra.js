@@ -3,6 +3,7 @@ const CZARNY = 1;
 const BIALY = 2;
 
 var stan = undefined;
+var ostatni = '1410-07-15';
 var kolor = CZARNY;
 
 function ajax(url, success, failure) {
@@ -24,7 +25,7 @@ function ajax(url, success, failure) {
 
 function pobierz_stan(id_gry) {
   return new Promise(function (resolve, reject) {
-    ajax('daj_stan.php?id_gry=' + id_gry, resolve, reject);
+    ajax('daj_stan.php?id_gry=' + id_gry + '&ostatni=' + ostatni, resolve, reject);
   });
 }
 
@@ -58,10 +59,14 @@ function odrysuj_plansze() {
 }
 
 function pobierz() {
-  pobierz_stan(id_gry).then(function (stan) {
-    window.stan = stan;
-    odrysuj_plansze();
-  });
+  pobierz_stan(id_gry, ostatni).then(function (stan) {
+    if (stan) {
+        window.stan = stan.stan;
+        window.ostatni = stan.kiedy_stanu;
+        odrysuj_plansze();
+    }
+    setTimeout(pobierz, 100);
+  }).catch(setTimeout.bind(undefined, pobierz, 100));
 }
 
 function wyslij() {
@@ -77,9 +82,9 @@ document.getElementById('czarny').onclick = function () {
 document.getElementById('bialy').onclick = function () {
   kolor = BIALY;
 }
-document.getElementById('pobierz').onclick = function () {
-  pobierz();
-}
+// document.getElementById('pobierz').onclick = function () {
+//   pobierz();
+// }
 // document.getElementById('wyslij').onclick = function () {
 //   wyslij();
 // }

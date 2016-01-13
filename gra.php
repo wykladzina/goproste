@@ -73,7 +73,7 @@ button {
 <button id="czarny"></button>
 <button id="bialy"></button>
 <!-- <button id="wyslij"></button> -->
-<button id="pobierz"></button>
+<!-- <button id="pobierz"></button> -->
 
 
   <script>
