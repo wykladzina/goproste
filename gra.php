@@ -59,6 +59,10 @@ button {
   background-repeat: no-repeat;
 }
 
+#plansza table {
+  margin: 1em auto;
+}
+
   </style>
 </head>
 <body>
