@@ -5,7 +5,7 @@ $id_gry = (int) $_GET['id_gry'];
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>go</title>
+  <title>otocz choinki sercem</title>
   <style>
 table {
   border-collapse: collapse;
@@ -61,6 +61,10 @@ button {
 
 #plansza table {
   margin: 1em auto;
+}
+
+#plansza td {
+  text-align: center;
 }
 
   </style>

@@ -32,8 +32,16 @@ function pobierz_stan(id_gry) {
 function stworz_plansze(stan) {
   var o = '';
   o += '<table>';
+  o += '<tr>';
+  for (var x = 0; x < stan.rozmiar + 1; x++) {
+    o += '<td>';
+    o += ['', 'A', 'Ą', 'B', 'C', 'Ć', 'CZ', 'D', 'DZ', 'DŻ', 'DŹ', 'E', 'Ę', 'F', 'G', 'H', 'CH', 'I', 'J', 'K', 'L', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'SZ', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź', 'RZ'][x];
+    o += '</td>';
+  }
+  o += '</tr>';
   for (var y = 0; y < stan.rozmiar; y++) {
     o += '<tr>';
+    o += '<td>' + y + '</td>';
     for (var x = 0; x < stan.rozmiar; x++) {
       o += '<td onclick="klik(' + x + ', ' + y + ')">';
       var co = stan.wiersze[y][x];
