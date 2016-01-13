@@ -69,6 +69,8 @@ function odrysuj_plansze() {
 function pobierz() {
   pobierz_stan(id_gry, ostatni).then(function (stan) {
     if (stan) {
+        pokazPobierz();
+        setTimeout(ukryjPobierz, 1000);
         window.stan = stan.stan;
         window.ostatni = stan.kiedy_stanu;
         odrysuj_plansze();
@@ -78,7 +80,24 @@ function pobierz() {
 }
 
 function wyslij() {
-  ajax('masz_stan.php?id_gry=' + id_gry + '&stan=' + JSON.stringify(stan), function () {});
+  pokazWyslij();
+  ajax('masz_stan.php?id_gry=' + id_gry + '&stan=' + JSON.stringify(stan), ukryjWyslij, ukryjWyslij);
+}
+
+function ukryjPobierz() {
+  document.getElementById('pobierz').style.visibility = 'hidden';
+}
+
+function ukryjWyslij() {
+  document.getElementById('wyslij').style.visibility = 'hidden';
+}
+
+function pokazPobierz() {
+  document.getElementById('pobierz').style.visibility = 'visible';
+}
+
+function pokazWyslij() {
+  document.getElementById('wyslij').style.visibility = 'visible';
 }
 
 document.getElementById('nic').onclick = function () {
@@ -90,10 +109,7 @@ document.getElementById('czarny').onclick = function () {
 document.getElementById('bialy').onclick = function () {
   kolor = BIALY;
 }
-// document.getElementById('pobierz').onclick = function () {
-//   pobierz();
-// }
-// document.getElementById('wyslij').onclick = function () {
-//   wyslij();
-// }
+ukryjPobierz();
+ukryjWyslij();
 pobierz();
+
